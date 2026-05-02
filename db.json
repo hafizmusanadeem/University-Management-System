@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "mon722mhg1uoq",
+      "full_name": "Muhammad Umair",
+      "email": "raoumairnawaz@gmail.com",
+      "password": "$2b$10$ZChglkEaBAPDYRmKqFCmwuHQu25sQ7izFSP4j.2oMU5nKlbBgZht.",
+      "degree": "BS Computer Science",
+      "role": "admin",
+      "created_at": "2026-05-01T17:36:02.250Z"
+    }
+  ],
+  "contacts": [],
+  "settings": {
+    "adminEmail": "admin@universe.edu.pk"
+  }
+}

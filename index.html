@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UniVerse — Modern University</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0a1628;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --cream: #faf7f2;
+  --white: #ffffff;
+  --gray: #6b7280;
+  --light: #f3f0eb;
+  --red: #e05252;
+  --green: #3aaa6e;
+  --shadow: 0 4px 24px rgba(10,22,40,0.12);
+  --radius: 12px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  min-height: 100vh;
+}
+
+nav {
+  background: var(--navy);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+.logo span { color: var(--gold); }
+
+.nav-links { display: flex; gap: 8px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--white);
+  background: rgba(201,168,76,0.18);
+}
+.nav-btn {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  font-weight: 600 !important;
+  padding: 8px 18px !important;
+}
+.nav-btn:hover { background: var(--gold-light) !important; }
+
+.page { display: none; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+/* ── HOME ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a2f55 60%, #0d1f3c 100%);
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding: 6% 8%;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: 10%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-content { max-width: 640px; z-index: 1; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.2);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.12;
+  margin-bottom: 20px;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero p {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+.btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.35); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.btn-navy { background: var(--navy); color: var(--white); }
+.btn-navy:hover { background: #12213a; transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-red { background: #e05252; color: white; }
+.btn-red:hover { background: #c43e3e; }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 48px 8%;
+  background: var(--white);
+  border-bottom: 1px solid #e8e4dd;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--navy);
+}
+.stat-num span { color: var(--gold); }
+.stat-label { font-size: 0.85rem; color: var(--gray); font-weight: 500; margin-top: 4px; }
+
+.section { padding: 64px 8%; }
+.section-header { margin-bottom: 40px; }
+.section-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.degree-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(10,22,40,0.07);
+  transition: all 0.3s;
+  border: 1px solid #ede9e0;
+}
+.degree-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,22,40,0.14); }
+.card-banner { height: 10px; background: linear-gradient(90deg, var(--navy), var(--gold)); }
+.card-body { padding: 24px; }
+.card-icon { font-size: 2rem; margin-bottom: 12px; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.card-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+.card-meta { display: flex; gap: 16px; font-size: 0.8rem; }
+.card-meta span {
+  background: var(--light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ── ABOUT ── */
+.about-hero {
+  background: linear-gradient(135deg, #1a2f55, var(--navy));
+  padding: 80px 8%;
+  text-align: center;
+  color: var(--white);
+}
+.about-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 16px;
+}
+.about-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 560px; margin: 0 auto; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 64px 8%;
+}
+@media(max-width:760px){ .about-grid { grid-template-columns: 1fr; } }
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  margin-bottom: 16px;
+}
+.about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 14px; }
+
+.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.value-box {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 12px rgba(10,22,40,0.06);
+}
+.value-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.value-box p { font-size: 0.83rem; color: var(--gray); line-height: 1.5; }
+
+/* ── DEGREES ── */
+.degrees-hero {
+  background: var(--navy);
+  padding: 72px 8%;
+  text-align: center;
+  color: var(--white);
+}
+.degrees-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+.degrees-hero p { color: rgba(255,255,255,0.65); }
+
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; padding: 32px 8% 0; }
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid #ddd;
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--navy);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* ── CONTACT ── */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0;
+  min-height: calc(100vh - 68px);
+}
+@media(max-width:760px){ .contact-wrapper { grid-template-columns: 1fr; } }
+
+.contact-info {
+  background: var(--navy);
+  padding: 64px 48px;
+  color: var(--white);
+}
+.contact-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.contact-info p { color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 40px; }
+
+.info-item { display: flex; gap: 16px; margin-bottom: 28px; align-items: flex-start; }
+.info-icon {
+  width: 42px; height: 42px;
+  background: rgba(201,168,76,0.15);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.25);
+}
+.info-text h4 { font-size: 0.88rem; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+.info-text p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+.contact-form-area { background: var(--cream); padding: 64px 48px; }
+.contact-form-area h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 32px;
+}
+
+/* ── FORMS ── */
+.form-group { margin-bottom: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 7px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0dbd2;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem;
+  background: var(--white);
+  color: var(--navy);
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+textarea { resize: vertical; min-height: 110px; }
+.btn-full { width: 100%; padding: 14px; font-size: 1rem; }
+
+/* ── AUTH ── */
+.auth-wrapper {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f0ede6, var(--cream));
+}
+.auth-box {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 8px 40px rgba(10,22,40,0.1);
+  border: 1px solid #ede9e0;
+}
+.auth-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+.auth-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 32px; }
+
+.auth-switch {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+.auth-switch a {
+  color: var(--gold);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.auth-switch a:hover { text-decoration: underline; }
+
+/* Alert */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: none;
+}
+.alert.show { display: block; }
+.alert-success { background: #d4f7e7; color: #1a6b45; border: 1px solid #a3e6c8; }
+.alert-error   { background: #fde8e8; color: #8b2020; border: 1px solid #f5b4b4; }
+.alert-info    { background: #ddeeff; color: #1a4a8b; border: 1px solid #99ccff; }
+
+/* ── DASHBOARD ── */
+.dashboard-header {
+  background: linear-gradient(135deg, var(--navy), #1e3a6e);
+  padding: 40px 8%;
+  color: var(--white);
+}
+.dashboard-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
+.dashboard-header p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-top: 4px; }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px 8%;
+}
+.dash-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(10,22,40,0.07);
+  border: 1px solid #ede9e0;
+}
+.dash-card-icon { font-size: 2rem; margin-bottom: 14px; }
+.dash-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.dash-card p { font-size: 0.85rem; color: var(--gray); }
+
+/* Admin badge */
+.admin-badge {
+  background: rgba(201,168,76,0.2);
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+/* Admin panel */
+.admin-section {
+  background: #fff8ee;
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 0 8% 40px;
+}
+.admin-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.admin-table th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 600;
+}
+.admin-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #ede9e0;
+  color: var(--navy);
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: #fdf8f0; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  padding: 40px 8% 24px;
+  margin-top: 60px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+@media(max-width:640px){ .footer-top { grid-template-columns: 1fr; } }
+.footer-brand p { font-size: 0.88rem; line-height: 1.7; margin-top: 10px; }
+.footer-col h4 { color: var(--gold); font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col a {
+  display: block;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.user-badge {
+  background: rgba(201,168,76,0.15);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">Uni<span>Verse</span></div>
+  <div class="nav-links">
+    <a onclick="showPage('home')"    id="nav-home"    class="active">Home</a>
+    <a onclick="showPage('about')"   id="nav-about">About</a>
+    <a onclick="showPage('degrees')" id="nav-degrees">Degrees</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+    <span id="nav-auth-area">
+      <a onclick="showPage('login')"    id="nav-login">Login</a>
+      <a onclick="showPage('register')" id="nav-register" class="nav-btn">Register</a>
+    </span>
+    <span id="nav-user-area" style="display:none; align-items:center; gap:12px;">
+      <span class="user-badge" id="nav-username"></span>
+      <a onclick="showPage('dashboard')">Dashboard</a>
+      <a onclick="logout()" style="color:#f88!important;">Logout</a>
+    </span>
+  </div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">🎓 Pakistan's Premier University</div>
+      <h1>Shape Your Future at <em>UniVerse</em> University</h1>
+      <p>World-class education, cutting-edge research, and a vibrant campus life — everything you need to become the professional of tomorrow.</p>
+      <div class="hero-btns">
+        <button class="btn btn-gold"    onclick="showPage('degrees')">Explore Degrees</button>
+        <button class="btn btn-outline" onclick="showPage('register')">Apply Now →</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">25<span>K+</span></div><div class="stat-label">Students Enrolled</div></div>
+    <div class="stat-item"><div class="stat-num">120<span>+</span></div><div class="stat-label">Degree Programs</div></div>
+    <div class="stat-item"><div class="stat-num">98<span>%</span></div><div class="stat-label">Employment Rate</div></div>
+    <div class="stat-item"><div class="stat-num">40<span>+</span></div><div class="stat-label">Years of Excellence</div></div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag">Popular Programs</div>
+      <div class="section-title">Featured Degree Programs</div>
+    </div>
+    <div class="cards-grid">
+      <div class="degree-card"><div class="card-banner"></div><div class="card-body"><div class="card-icon">💻</div><div class="card-title">BS Computer Science</div><div class="card-desc">Master algorithms, AI, and software engineering with hands-on projects and industry mentors.</div><div class="card-meta"><span>4 Years</span><span>BS</span></div></div></div>
+      <div class="degree-card"><div class="card-banner"></div><div class="card-body"><div class="card-icon">⚙️</div><div class="card-title">BS Software Engineering</div><div class="card-desc">Build scalable systems and enterprise applications with a focus on agile methodologies.</div><div class="card-meta"><span>4 Years</span><span>BS</span></div></div></div>
+      <div class="degree-card"><div class="card-banner"></div><div class="card-body"><div class="card-icon">📊</div><div class="card-title">BBA Business Administration</div><div class="card-desc">Leadership, finance, and marketing skills to navigate the modern business landscape.</div><div class="card-meta"><span>4 Years</span><span>BBA</span></div></div></div>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+      <button class="btn btn-navy" onclick="showPage('degrees')">View All 120+ Programs →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <h1>About UniVerse University</h1>
+    <p>Shaping brilliant minds since 1985, with a commitment to academic excellence and innovation.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2>40 Years of Academic Excellence</h2>
+      <p>Founded in 1985 in Lahore, UniVerse University has grown from a small institution of 200 students to one of Pakistan's most prestigious universities with over 25,000 students across 10 faculties.</p>
+      <p>Our mission is simple: provide world-class education that empowers graduates to solve real-world problems and lead with integrity.</p>
+      <button class="btn btn-gold" onclick="showPage('register')" style="margin-top:16px;">Join Our Community</button>
+    </div>
+    <div class="values-grid">
+      <div class="value-box"><h4>🔬 Research</h4><p>Over 500 research publications annually in international journals.</p></div>
+      <div class="value-box"><h4>🌍 Global</h4><p>Partnerships with 80+ universities across 30 countries.</p></div>
+      <div class="value-box"><h4>🏆 Rankings</h4><p>Ranked #1 in Pakistan for STEM programs five consecutive years.</p></div>
+      <div class="value-box"><h4>💼 Careers</h4><p>98% of graduates employed within 6 months of graduation.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEGREES ══ -->
+<div class="page" id="page-degrees">
+  <div class="degrees-hero">
+    <h1>Our Degree Programs</h1>
+    <p>120+ programs across 10 faculties — find your perfect path</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterDegrees('all', this)">All Programs</button>
+    <button class="filter-btn" onclick="filterDegrees('cs', this)">Computing</button>
+    <button class="filter-btn" onclick="filterDegrees('business', this)">Business</button>
+    <button class="filter-btn" onclick="filterDegrees('engineering', this)">Engineering</button>
+    <button class="filter-btn" onclick="filterDegrees('medical', this)">Medical</button>
+    <button class="filter-btn" onclick="filterDegrees('arts', this)">Arts & Social</button>
+  </div>
+  <div class="section" style="padding-top:24px;">
+    <div class="cards-grid" id="degrees-container"></div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="page" id="page-contact">
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p>Have questions about admissions, programs, or campus life? We're here to help you every step of the way.</p>
+      <div class="info-item"><div class="info-icon">📍</div><div class="info-text"><h4>Address</h4><p>University Road, Lahore, Punjab 54000, Pakistan</p></div></div>
+      <div class="info-item"><div class="info-icon">📞</div><div class="info-text"><h4>Phone</h4><p>+92 42 3570 0001<br/>+92 300 123 4567</p></div></div>
+      <div class="info-item"><div class="info-icon">✉️</div><div class="info-text"><h4>Email</h4><p>info@universe.edu.pk<br/>admissions@universe.edu.pk</p></div></div>
+      <div class="info-item"><div class="info-icon">🕐</div><div class="info-text"><h4>Office Hours</h4><p>Mon–Fri: 9:00 AM – 5:00 PM<br/>Sat: 9:00 AM – 1:00 PM</p></div></div>
+    </div>
+    <div class="contact-form-area">
+      <h2>Send Us a Message</h2>
+      <div class="alert" id="contact-alert"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" id="c-name" placeholder="Your name"/></div>
+        <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="you@email.com"/></div>
+      </div>
+      <div class="form-group"><label>Subject</label><input type="text" id="c-subject" placeholder="e.g. Admission inquiry"/></div>
+      <div class="form-group"><label>Message</label><textarea id="c-message" placeholder="Write your message here..."></textarea></div>
+      <button class="btn btn-gold btn-full" onclick="submitContact()">Send Message ✉️</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LOGIN ══ -->
+<div class="page" id="page-login">
+  <div class="auth-wrapper">
+    <div class="auth-box">
+      <h2>Welcome Back</h2>
+      <p>Login to your UniVerse student account</p>
+      <div class="alert" id="login-alert"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="l-email" placeholder="you@email.com" onkeydown="if(event.key==='Enter')submitLogin()"/></div>
+      <div class="form-group"><label>Password</label><input type="password" id="l-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitLogin()"/></div>
+      <button class="btn btn-gold btn-full" id="login-btn" onclick="submitLogin()">Login to Account</button>
+      <div class="auth-switch">Don't have an account? <a onclick="showPage('register')">Register here</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REGISTER ══ -->
+<div class="page" id="page-register">
+  <div class="auth-wrapper">
+    <div class="auth-box">
+      <h2>Create Account</h2>
+      <p>Join the UniVerse University community today</p>
+      <div class="alert" id="reg-alert"></div>
+      <div class="form-group"><label>Full Name</label><input type="text" id="r-name" placeholder="Muhammad Umair"/></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="r-email" placeholder="you@email.com"/></div>
+      <div class="form-group">
+        <label>Select Degree Program</label>
+        <select id="r-degree">
+          <option value="">-- Choose your program --</option>
+          <option>BS Computer Science</option>
+          <option>BS Software Engineering</option>
+          <option>BS Information Technology</option>
+          <option>BS Artificial Intelligence</option>
+          <option>BBA Business Administration</option>
+          <option>MBA</option>
+          <option>BS Electrical Engineering</option>
+          <option>BS Mechanical Engineering</option>
+          <option>BS Civil Engineering</option>
+          <option>MBBS</option>
+          <option>BS Psychology</option>
+          <option>BS English Literature</option>
+          <option>BS Economics</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Password</label><input type="password" id="r-password" placeholder="Min. 6 characters"/></div>
+      <button class="btn btn-gold btn-full" id="reg-btn" onclick="submitRegister()">Create My Account</button>
+      <div class="auth-switch">Already registered? <a onclick="showPage('login')">Login here</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div class="page" id="page-dashboard">
+  <div class="dashboard-header">
+    <h1>Welcome, <span id="dash-name">Student</span>! 👋 <span class="admin-badge" id="dash-admin-badge" style="display:none;">ADMIN</span></h1>
+    <p>Your academic portal — manage your courses, deadlines, and more</p>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dash-card"><div class="dash-card-icon">🎓</div><h3>My Degree</h3><p id="dash-degree">Loading...</p></div>
+    <div class="dash-card"><div class="dash-card-icon">✉️</div><h3>Email</h3><p id="dash-email">-</p></div>
+    <div class="dash-card"><div class="dash-card-icon">📚</div><h3>Enrolled Courses</h3><p>6 active courses this semester</p></div>
+    <div class="dash-card"><div class="dash-card-icon">📅</div><h3>Upcoming Exams</h3><p>Mid-terms in 3 weeks</p></div>
+    <div class="dash-card"><div class="dash-card-icon">📝</div><h3>Assignments</h3><p>2 pending assignments</p></div>
+    <div class="dash-card"><div class="dash-card-icon">🏅</div><h3>Account Role</h3><p id="dash-role">Student</p></div>
+  </div>
+
+  <!-- ADMIN PANEL (only visible to admins) -->
+  <div id="admin-panel" style="display:none;">
+    <div class="admin-section">
+      <h3>👑 Admin Panel — Registered Students</h3>
+      <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px;">All users who have created accounts on UniVerse.</p>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="users-table">
+          <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Degree</th><th>Role</th><th>Joined</th></tr></thead>
+          <tbody id="users-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-section" style="margin-top:0;">
+      <h3>📨 Contact Messages</h3>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="contacts-table">
+          <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th></tr></thead>
+          <tbody id="contacts-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Uni<span>Verse</span></div>
+      <p>Empowering the next generation of leaders, innovators, and changemakers since 1985.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('degrees')">Degrees</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Admissions</h4>
+      <a onclick="showPage('register')">Apply Now</a>
+      <a onclick="showPage('login')">Student Login</a>
+      <a>Fee Structure</a>
+      <a>Scholarships</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 UniVerse University, Lahore. All rights reserved.</div>
+</footer>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────
+const API = 'http://localhost:3000/api';
+let currentUser = null;
+
+// ── DEGREE DATA ─────────────────────────────────────────────
+const degreesData = [
+  { id:'cs', icon:'💻', title:'BS Computer Science',         desc:'Algorithms, AI, software dev, networks & more.',       duration:'4 Years', level:'BS' },
+  { id:'cs', icon:'🤖', title:'BS Artificial Intelligence',  desc:'Machine learning, deep learning, intelligent systems.', duration:'4 Years', level:'BS' },
+  { id:'cs', icon:'🌐', title:'BS Information Technology',   desc:'Systems, databases, cybersecurity & cloud computing.',  duration:'4 Years', level:'BS' },
+  { id:'cs', icon:'⚙️', title:'BS Software Engineering',     desc:'Design and build enterprise-grade software systems.',   duration:'4 Years', level:'BS' },
+  { id:'business', icon:'📊', title:'BBA Business Administration', desc:'Finance, marketing, HR and entrepreneurship.',    duration:'4 Years', level:'BBA' },
+  { id:'business', icon:'📈', title:'MBA',                   desc:'Advanced management for working professionals.',        duration:'2 Years', level:'MBA' },
+  { id:'business', icon:'💰', title:'BS Accounting & Finance', desc:'ACCA-aligned curriculum with industry placements.',  duration:'4 Years', level:'BS' },
+  { id:'engineering', icon:'⚡', title:'BS Electrical Engineering', desc:'Power systems, electronics, and signal processing.', duration:'4 Years', level:'BS' },
+  { id:'engineering', icon:'🔩', title:'BS Mechanical Engineering', desc:'Thermodynamics, design, and manufacturing systems.', duration:'4 Years', level:'BS' },
+  { id:'engineering', icon:'🏗️', title:'BS Civil Engineering', desc:'Structural design, urban planning, and construction.', duration:'4 Years', level:'BS' },
+  { id:'medical', icon:'🩺', title:'MBBS',                   desc:'Comprehensive medical degree with clinical rotations.', duration:'5 Years', level:'MBBS' },
+  { id:'medical', icon:'🦷', title:'BDS Dentistry',           desc:'Oral health, surgery, and preventive dentistry.',     duration:'4 Years', level:'BDS' },
+  { id:'arts', icon:'🧠', title:'BS Psychology',              desc:'Human behavior, cognitive science, and counseling.',   duration:'4 Years', level:'BS' },
+  { id:'arts', icon:'📖', title:'BS English Literature',     desc:'Literary theory, creative writing, and linguistics.',  duration:'4 Years', level:'BS' },
+  { id:'arts', icon:'💹', title:'BS Economics',              desc:'Micro/macroeconomics, econometrics, and policy.',      duration:'4 Years', level:'BS' },
+];
+
+// ── PAGE NAVIGATION ─────────────────────────────────────────
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── ALERT HELPER ────────────────────────────────────────────
+function showAlert(id, msg, type='error') {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'alert show alert-' + type;
+  setTimeout(() => el.classList.remove('show'), 5000);
+}
+
+// ── LOADING BUTTON ──────────────────────────────────────────
+function setLoading(btnId, loading, defaultText) {
+  const btn = document.getElementById(btnId);
+  if (loading) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Please wait...';
+  } else {
+    btn.disabled = false;
+    btn.textContent = defaultText;
+  }
+}
+
+// ── DEGREES ─────────────────────────────────────────────────
+function renderDegrees(filter='all') {
+  const list = filter === 'all' ? degreesData : degreesData.filter(d => d.id === filter);
+  document.getElementById('degrees-container').innerHTML = list.map(d => `
+    <div class="degree-card">
+      <div class="card-banner"></div>
+      <div class="card-body">
+        <div class="card-icon">${d.icon}</div>
+        <div class="card-title">${d.title}</div>
+        <div class="card-desc">${d.desc}</div>
+        <div class="card-meta"><span>${d.duration}</span><span>${d.level}</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function filterDegrees(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDegrees(cat);
+}
+
+// ══════════════════════════════════════════════════════════
+//  REGISTER
+// ══════════════════════════════════════════════════════════
+async function submitRegister() {
+  const full_name = document.getElementById('r-name').value.trim();
+  const email     = document.getElementById('r-email').value.trim();
+  const degree    = document.getElementById('r-degree').value;
+  const password  = document.getElementById('r-password').value;
+
+  if (!full_name || !email || !degree || !password)
+    return showAlert('reg-alert', '⚠️ Please fill in all fields.');
+  if (password.length < 6)
+    return showAlert('reg-alert', '⚠️ Password must be at least 6 characters.');
+
+  setLoading('reg-btn', true, 'Create My Account');
+  try {
+    const res  = await fetch(`${API}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ full_name, email, password, degree })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showAlert('reg-alert', '✅ Account created! Redirecting to login...', 'success');
+      setTimeout(() => showPage('login'), 1800);
+    } else {
+      showAlert('reg-alert', '❌ ' + (data.error || 'Registration failed.'));
+    }
+  } catch {
+    showAlert('reg-alert', '⚠️ Cannot reach server. Is backend running? (node server.js)');
+  }
+  setLoading('reg-btn', false, 'Create My Account');
+}
+
+// ══════════════════════════════════════════════════════════
+//  LOGIN
+// ══════════════════════════════════════════════════════════
+async function submitLogin() {
+  const email    = document.getElementById('l-email').value.trim();
+  const password = document.getElementById('l-password').value;
+
+  if (!email || !password)
+    return showAlert('login-alert', '⚠️ Please enter email and password.');
+
+  setLoading('login-btn', true, 'Login to Account');
+  try {
+    const res  = await fetch(`${API}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      // Save token so user stays logged in after page refresh
+      localStorage.setItem('uv_token', data.token);
+      localStorage.setItem('uv_user',  JSON.stringify(data.user));
+      loginSuccess(data.user);
+    } else {
+      showAlert('login-alert', '❌ ' + (data.error || 'Login failed.'));
+    }
+  } catch {
+    showAlert('login-alert', '⚠️ Cannot reach server. Is backend running? (node server.js)');
+  }
+  setLoading('login-btn', false, 'Login to Account');
+}
+
+function loginSuccess(user) {
+  currentUser = user;
+  updateNavForUser(user);
+
+  document.getElementById('dash-name').textContent  = user.full_name.split(' ')[0];
+  document.getElementById('dash-degree').textContent = user.degree;
+  document.getElementById('dash-email').textContent  = user.email;
+  document.getElementById('dash-role').textContent   = user.role === 'admin' ? '👑 Admin / Owner' : '🎓 Student';
+
+  // Show admin badge & panel if admin
+  if (user.role === 'admin') {
+    document.getElementById('dash-admin-badge').style.display = 'inline';
+    document.getElementById('admin-panel').style.display      = 'block';
+    loadAdminData();
+  }
+
+  showPage('dashboard');
+}
+
+// ══════════════════════════════════════════════════════════
+//  ADMIN DATA
+// ══════════════════════════════════════════════════════════
+async function loadAdminData() {
+  const token = localStorage.getItem('uv_token');
+
+  // Load users
+  try {
+    const res  = await fetch(`${API}/admin/users`, { headers: { Authorization: 'Bearer ' + token } });
+    const data = await res.json();
+    if (data.success) {
+      const tbody = document.getElementById('users-tbody');
+      tbody.innerHTML = data.users.map((u, i) => `
+        <tr>
+          <td>${i+1}</td>
+          <td><strong>${u.full_name}</strong></td>
+          <td>${u.email}</td>
+          <td>${u.degree}</td>
+          <td>${u.role === 'admin' ? '👑 Admin' : '🎓 Student'}</td>
+          <td>${new Date(u.created_at).toLocaleDateString()}</td>
+        </tr>`).join('') || '<tr><td colspan="6" style="color:var(--gray)">No students yet.</td></tr>';
+    }
+  } catch {}
+
+  // Load contacts
+  try {
+    const res  = await fetch(`${API}/admin/contacts`, { headers: { Authorization: 'Bearer ' + token } });
+    const data = await res.json();
+    if (data.success) {
+      const tbody = document.getElementById('contacts-tbody');
+      tbody.innerHTML = data.contacts.map((c, i) => `
+        <tr>
+          <td>${i+1}</td>
+          <td>${c.name}</td>
+          <td>${c.email}</td>
+          <td>${c.subject}</td>
+          <td>${c.message.substring(0, 60)}${c.message.length > 60 ? '...' : ''}</td>
+          <td>${new Date(c.created_at).toLocaleDateString()}</td>
+        </tr>`).join('') || '<tr><td colspan="6" style="color:var(--gray)">No messages yet.</td></tr>';
+    }
+  } catch {}
+}
+
+// ══════════════════════════════════════════════════════════
+//  CONTACT FORM
+// ══════════════════════════════════════════════════════════
+async function submitContact() {
+  const name    = document.getElementById('c-name').value.trim();
+  const email   = document.getElementById('c-email').value.trim();
+  const subject = document.getElementById('c-subject').value.trim();
+  const message = document.getElementById('c-message').value.trim();
+
+  if (!name || !email || !message)
+    return showAlert('contact-alert', '⚠️ Name, email, and message are required.');
+
+  try {
+    const res  = await fetch(`${API}/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showAlert('contact-alert', "✅ Message sent! We'll get back to you soon.", 'success');
+      ['c-name','c-email','c-subject','c-message'].forEach(id => document.getElementById(id).value = '');
+    } else {
+      showAlert('contact-alert', data.error || 'Failed to send.');
+    }
+  } catch {
+    showAlert('contact-alert', '⚠️ Cannot reach server. Is backend running?');
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  NAV & LOGOUT
+// ══════════════════════════════════════════════════════════
+function updateNavForUser(user) {
+  document.getElementById('nav-auth-area').style.display = 'none';
+  const ua = document.getElementById('nav-user-area');
+  ua.style.display = 'flex';
+  document.getElementById('nav-username').textContent = user.full_name.split(' ')[0];
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('uv_token');
+  localStorage.removeItem('uv_user');
+  document.getElementById('nav-auth-area').style.display = '';
+  document.getElementById('nav-user-area').style.display = 'none';
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('dash-admin-badge').style.display = 'none';
+  showPage('home');
+}
+
+// ══════════════════════════════════════════════════════════
+//  AUTO LOGIN (if token saved in localStorage)
+// ══════════════════════════════════════════════════════════
+function tryAutoLogin() {
+  const token    = localStorage.getItem('uv_token');
+  const userJson = localStorage.getItem('uv_user');
+  if (!token || !userJson) return;
+
+  try {
+    const user = JSON.parse(userJson);
+    // Verify token is still valid with server
+    fetch(`${API}/me`, { headers: { Authorization: 'Bearer ' + token } })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          loginSuccess(data.user);
+        } else {
+          localStorage.removeItem('uv_token');
+          localStorage.removeItem('uv_user');
+        }
+      })
+      .catch(() => {
+        // Server offline — restore from cache silently
+        updateNavForUser(user);
+        currentUser = user;
+      });
+  } catch {}
+}
+
+// ── INIT ────────────────────────────────────────────────────
+renderDegrees();
+tryAutoLogin();
+</script>
+</body>
+</html>
