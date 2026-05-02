@@ -26,14 +26,15 @@ db.defaults({
 
 // ── App Setup ───────────────────────────────────────────────
 const app    = express();
-const PORT   = 3000;
+const PORT   = process.env.PORT || 3000;
 const SECRET = 'universe_secret_key_2025'; // change in production!
 
 app.use(cors());
 app.use(express.json());
 
-// Serve the HTML frontend from same folder (if placed there)
+// Serve the HTML frontend from the root if no public folder is present
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 // ── HELPERS ─────────────────────────────────────────────────
 function generateId() {
