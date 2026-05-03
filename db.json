@@ -8,6 +8,42 @@
       "degree": "BS Computer Science",
       "role": "admin",
       "created_at": "2026-05-01T17:36:02.250Z"
+    },
+    {
+      "id": "mooo62tb6qy0r",
+      "full_name": "Umari",
+      "email": "you@gamil.com",
+      "password": "$2b$10$gYftRfPqgBkbqExMo/KQP.vzl5BxZEMDZbkp5ztKOeK3/D9iy.zKW",
+      "degree": "BS Information Technology",
+      "role": "student",
+      "created_at": "2026-05-02T18:22:48.767Z"
+    },
+    {
+      "id": "mophewoadphup",
+      "full_name": "dfjasl;",
+      "email": "dfajsdlf2gmail.com",
+      "password": "$2b$10$QPJorpZ4hvmXxl755rtkKuw0Fk9myKtf5TTGaXQEosL1dlJ8XTe4i",
+      "degree": "BS Economics",
+      "role": "student",
+      "created_at": "2026-05-03T08:01:29.578Z"
+    },
+    {
+      "id": "mophg6r25ihjl",
+      "full_name": "hmna",
+      "email": "hmna@gmail.com",
+      "password": "$2b$10$bzKNEMWq.QAdi3g6/5mq.O4/Z26hx4g8JfuaQzFUdQTNtZGAy7LKK",
+      "degree": "BS Economics",
+      "role": "student",
+      "created_at": "2026-05-03T08:02:29.294Z"
+    },
+    {
+      "id": "mophxuqo70bmx",
+      "full_name": "Rao",
+      "email": "maag786678@gmail.com",
+      "password": "$2b$10$7tuCZxUVv.QDzZ0zLsiZeOO.mo0cf5SG4.N5wn2YD8G1ab.WiQw6W",
+      "degree": "BS Electrical Engineering",
+      "role": "student",
+      "created_at": "2026-05-03T08:16:13.536Z"
     }
   ],
   "contacts": [],
